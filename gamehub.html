@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏商店</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#7E22CE',
+                        secondary: '#1F2937',
+                        accent: '#EC4899',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities{
+            .content-auto{
+                content-visibility: auto;
+            }
+            .game-card{
+                @apply transition-all duration-300 hover:scale-105 hover:shadow-xl;
+            }
+            .nav-link{
+                @apply px-4 py-2 text-gray-300 hover:text-white hover:border-b-2 hover:border-primary transition-all;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white font-inter">
+    <!--1导航栏-->
+    <header id="top" class="sticky top-0 z-50 bg-secondary/90 backdrop-blur-sm">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-gamepad text-3xl text-primary"></i>
+                <h1 class="text-2xl font-bold text-white">GameHub</h1>
+            </div>
+
+            <div class="hidden md:block w-1/3">
+                <div class="relative">
+                    <input type="text" id="search" placeholder="搜索游戏、开发商、标签..."
+                        class="w-full bg-gray-800 rounded-full py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-primary/50">
+                    <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex items-center gap-2">
+                <a href="#top" class="nav-link border-b-2 border-primary text-white">首页</a>
+                <a href="#top" class="nav-link">商店</a>
+                <a href="to-do.html" class="nav-link">特惠</a>
+                <a href="to-do.html" class="nav-link">库</a>
+                <a href="to-do.html" class="nav-link">社区</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="to-do.html">
+                    <button
+                        class="hidden md:block bg-primary hover:bg-primary/80 px-4 py-2 rounded-full transition-all">
+                        <i class="fa-solid fa-cart-shopping mr-2"></i>购物车
+                    </button>
+                </a>
+                <a href="to-do.html">
+                    <div
+                        class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center cursor-pointer hover:ring-2 hover:ring-primary/50 transition-all">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </a>
+                <!--移动端按钮-->
+                <button id="mobile-menu-btn" class="md:hidden text-2xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="md:hidden px-4 pb-3">
+            <div class="relative">
+                <input type="text" placeholder="搜索游戏、开发商、标签..."
+                    class="w-full bg-gray-800 rounded-full py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-primary/50">
+                <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            </div>
+        </div>
+        <!--移动端-->
+        <div id="mobile-menu" class="md:hidden hidden bg-secondary border-t border-gray-700">
+            <div class="container mx-auto px-4 py-2 flex flex-col">
+                <a href="#top" class="py-2 px-4 text-white border-l-4 border-primary">首页</a>
+                <a href="#top"
+                    class="py-2 px-4 text-gray-300 hover:text-white hover:border-l-4 hover:border-primary transition-all">商店</a>
+                <a href="to-do.html"
+                    class="py-2 px-4 text-gray-300 hover:text-white hover:border-l-4 hover:border-primary transition-all">特惠</a>
+                <a href="to-do.html"
+                    class="py-2 px-4 text-gray-300 hover:text-white hover:border-l-4 hover:border-primary transition-all">库</a>
+                <a href="to-do.html"
+                    class="py-2 px-4 text-gray-300 hover:text-white hover:border-l-4 hover:border-primary transition-all">社区</a>
+                <a href="to-do.html"
+                    class="py-2 px-4 text-gray-300 hover:text-white hover:border-l-4 hover:border-primary transition-all">
+                    <i class="fa-solid fa-cart-shopping mr-2"></i>购物车
+                </a>
+            </div>
+        </div>
+    </header>
+    <!--2主体-->
+    <main class="container mx-auto px-4 py-8">
+        <!--2.1推荐-->
+        <section class="mb-12">
+            <div id="carousel" class="relative overflow-hidden rounded-2xl h-[400px] md:h-[500px]">
+                <div class="carousel-items flex transform duration-500">
+                    <a href="cs2.html" class="carousel-item w-full flex-shrink-0 block">
+                        <img src="https://shared.cdn.queniuqe.com/store_item_assets/steam/apps/730/header_schinese.jpg?t=1749053861"
+                            alt="游戏推荐1" class="w-full h-full object-cover">
+                    </a>
+                    <a href="gta5.html" class="carousel-item w-full flex-shrink-0 block">
+                        <img src="https://shared.cdn.queniuqe.com/store_item_assets/steam/apps/3240220/header_schinese.jpg?t=1765479644"
+                            alt="游戏推荐2" class="w-full h-full object-cover">
+                    </a>
+                    <a href="pubg.html" class="carousel-item w-full flex-shrink-0 block">
+                        <img src="https://shared.cdn.queniuqe.com/store_item_assets/steam/apps/578080/841ea38bc58cabb70aef65365cf50bc2d79329d9/header.jpg?t=1764817633"
+                            alt="游戏推荐3" class="w-full h-full object-cover">
+                    </a>
+                </div>
+
+                <button id="prev-btn"
+                    class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center hover:bg-primary/80 transition-all z-10">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button id="next-btn"
+                    class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center hover:bg-primary/80 transition-all z-10">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                    <button
+                        class="carousel-indicator w-3 h-3 rounded-full bg-white/50 hover:bg-primary transition-all active"></button>
+                    <button
+                        class="carousel-indicator w-3 h-3 rounded-full bg-white/50 hover:bg-primary transition-all"></button>
+                    <button
+                        class="carousel-indicator w-3 h-3 rounded-full bg-white/50 hover:bg-primary transition-all"></button>
+                </div>
+            </div>
+        </section>
+        <!--分类-->
+        <section class="mb-12">
+            <div class="category-bar flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">游戏分类</h2>
+                <a href="to-do.html" class="block">
+                    <button class="text-primary hover:text-primary/80 transition-all">
+                        查看全部<i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </a>
+            </div>
+            <div id="game-list">
+                <!--按钮-->
+                <div class="category-bar flex flex-wrap gap-3 mb-8">
+                    <button class="category-btn bg-primary text-white px-4 py-2 rounded-full"
+                        data-category="all">全部</button>
+                    <button class="category-btn bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full transition-all"
+                        data-category="to-do">动作</button>
+                    <button class="category-btn bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full transition-all"
+                        data-category="to-do">冒险</button>
+                    <button class="category-btn bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full transition-all"
+                        data-category="to-do">角色扮演</button>
+                    <button class="category-btn bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full transition-all"
+                        data-category="to-do">策略</button>
+                    <button class="category-btn bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full transition-all"
+                        data-category="to-do">模拟</button>
+                    <button class="category-btn bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full transition-all"
+                        data-category="to-do">休闲</button>
+                    <button class="category-btn bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full transition-all"
+                        data-category="to-do">竞技</button>
+                </div>
+                <!--卡片-->
+                <div id="game-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                    <a href="ggbh.html" class="block">
+                        <div class="game-card bg-secondary rounded-xl overflow-hidden">
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1468810/8b9f779404a407e1109c13ddb96bf4dd92ac7404/header_alt_assets_4_schinese.jpg?t=1769479020"
+                                alt="鬼谷八荒" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-semibold mb-1">鬼谷八荒</h3>
+                                <div class="flex items-center text-yellow-400 mb-2">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <span class="text-gray-400 ml-1">5</span>
+                                </div>
+                                <p class="text-xl font-bold text-white">¥37.40</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="wallpaper.html">
+                        <div class="game-card bg-secondary rounded-xl overflow-hidden">
+                            <img src="https://shared.cdn.queniuqe.com/store_item_assets/steam/apps/431960/header_292x136_schinese.jpg?t=1739211362"
+                                alt="Wallpaper Engine：壁纸引擎
+" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-semibold mb-1">Wallpaper Engine：壁纸引擎</h3>
+                                <div class="flex items-center text-yellow-400 mb-2">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <span class="text-gray-400 ml-1">5</span>
+                                </div>
+                                <p class="text-xl font-bold text-white">22.90</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="dota2.html">
+                        <div class="game-card bg-secondary rounded-xl overflow-hidden">
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/570/header.jpg?t=1769535998"
+                                alt="Dota2" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-semibold mb-1">Dota2</h3>
+                                <div class="flex items-center text-yellow-400 mb-2">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <span class="text-gray-400 ml-1">5.0</span>
+                                </div>
+                                <p class="text-xl font-bold text-white">免费开玩</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="Terraria.html">
+                        <div class="game-card bg-secondary rounded-xl overflow-hidden">
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg?t=1769528870"
+                                alt="Terraria" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-semibold mb-1">Terraria</h3>
+                                <div class="flex items-center text-yellow-400 mb-2">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <span class="text-gray-400 ml-1">5.0</span>
+                                </div>
+                                <p class="text-xl font-bold text-white">¥42.00</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="bdzm3.html">
+                        <div class="game-card bg-secondary rounded-xl overflow-hidden">
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/48a2fcbda8565bb45025e98fd8ebde8a7203f6a0/header.jpg?t=1765505948"
+                                alt="博德之门3" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-semibold mb-1">博德之门3</h3>
+                                <div class="flex items-center text-yellow-400 mb-2">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <span class="text-gray-400 ml-1">5.0</span>
+                                </div>
+                                <p class="text-xl font-bold text-white">¥298.00</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!--未完待续-->
+                <div class="category-placeholder hidden flex flex-col items-center justify-center py-12 text-center">
+                    <p class="text-2xl font-semibold mb-6">这部分功能还没做好哦</p>
+                    <img src="pd-image.png" class="rounded-xl max-w-full md:max-w-2xl">
+                </div>
+            </div>
+        </section>
+        <!--2.3排行-->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">热门排行</h2>
+                <div class="flex gap-2">
+                    <button class="rank-btn bg-primary text-white px-4 py-2 rounded-lg">销量</button>
+                    <button
+                        class="rank-btn bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition-all">评分</button>
+                    <button
+                        class="rank-btn bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition-all">新品</button>
+                </div>
+            </div>
+
+            <div id="rank-table" class="bg-secondary rounded-xl overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-gray-700">
+                                <th class="px-6 py-4 text-left w-16">排名</th>
+                                <th class="px-6 py-4 text-left">游戏名称</th>
+                                <th class="px-6 py-4 text-left hidden md:table-cell">类型</th>
+                                <th class="px-6 py-4 text-left hidden lg:table-cell">发行商</th>
+                                <th class="px-6 py-4 text-left">评分</th>
+                                <th class="px-6 py-4 text-left">价格</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-700 hover:bg-gray-800 transition-all">
+                                <td class="px-6 py-4 font-bold text-primary">1</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://shared.cdn.queniuqe.com/store_item_assets/steam/apps/730/header_schinese.jpg?t=1749053861"
+                                            alt="CS2" class="w-12 h-12 rounded">
+                                        <a href="cs2.html" class="hover:text-primary transition-all">CS2</a>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 hidden md:table-cell">FPS</td>
+                                <td class="px-6 py-4 hidden lg:table-cell">V社</td>
+                                <td class="px-6 py-4 text-yellow-400">5.0</td>
+                                <td class="px-6 py-4">免费开玩</td>
+                            </tr>
+                            <tr class="border-b border-gray-700 hover:bg-gray-800 transition-all">
+                                <td class="px-6 py-4 font-bold text-primary/80">2</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/570/header.jpg?t=1769535998"
+                                            alt="Dota2" class="w-12 h-12 rounded">
+                                        <a href="dota2.html" class="hover:text-primary transition-all">Dota 2</a>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 hidden md:table-cell">MOBA/RST</td>
+                                <td class="px-6 py-4 hidden lg:table-cell">V社</td>
+                                <td class="px-6 py-4 text-yellow-400">5.0</td>
+                                <td class="px-6 py-4">免费开玩</td>
+                            </tr>
+                            <tr class="border-b border-gray-700 hover:bg-gray-800 transition-all">
+                                <td class="px-6 py-4 font-bold text-primary/60">3</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://shared.cdn.queniuqe.com/store_item_assets/steam/apps/431960/header_292x136_schinese.jpg?t=1739211362"
+                                            alt="Wallpaper" class="w-12 h-12 rounded">
+                                        <a href="wallpaper.html" class="hover:text-primary transition-all">Wallpaper</a>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 hidden md:table-cell">壁纸</td>
+                                <td class="px-6 py-4 hidden lg:table-cell">Wallpaper Engine Team</td>
+                                <td class="px-6 py-4 text-yellow-400">5.0</td>
+                                <td class="px-6 py-4">¥22.90</td>
+                            </tr>
+                            <tr class="hover:bg-gray-800 transition-all">
+                                <td class="px-6 py-4 font-bold text-gray-500">4</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg?t=1769528870"
+                                            alt="泰拉瑞亚" class="w-12 h-12 rounded">
+                                        <a href="Terraria.html" class="hover:text-primary transition-all">泰拉瑞亚</a>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 hidden md:table-cell">沙盒</td>
+                                <td class="px-6 py-4 hidden lg:table-cell">Re-Logic</td>
+                                <td class="px-6 py-4 text-yellow-400">5.0</td>
+                                <td class="px-6 py-4">¥42.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--未完待续-->
+            <div id="rank-placeholder"
+                class="hidden bg-secondary rounded-xl py-12 flex flex-col items-center justify-center text-center">
+                <p class="text-2xl font-semibold mb-6">该功能还没有完成喔</p>
+                <img src="pd-image (1).png" class="rounded-xl max-w-full md:max-w-2xl">
+            </div>
+        </section>
+    </main>
+    <!--3页脚-->
+    <footer class="bg-secondary py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fa-solid fa-gamepad text-2xl text-primary"></i>
+                        <h3 class="text-xl font-bold">GameHub</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">不是Steam逛不起,而是我的商店更有性价比</p>
+                    <div class="flex gap-4 text-xl">
+                        <a href="to-do.html" class="text-gray-400 hover:text-primary transition-all"><i
+                                class="fa-brands fa-twitter"></i></a>
+                        <a href="to-do.html" class="text-gray-400 hover:text-primary transition-all"><i
+                                class="fa-brands fa-facebook"></i></a>
+                        <a href="to-do.html" class="text-gray-400 hover:text-primary transition-all"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="to-do.html" class="text-gray-400 hover:text-primary transition-all"><i
+                                class="fa-brands fa-discord"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">商店</h4>
+                    <ul class="space-y-2">
+                        <li><a href="to-do.html" class="text-gray-400 hover:text-white transition-all">全部游戏</a></li>
+                        <li><a href="to-do.html" class="text-gray-400 hover:text-white transition-all">新品上市</a></li>
+                        <li><a href="to-do.html" class="text-gray-400 hover:text-white transition-all">特惠促销</a></li>
+                        <li><a href="to-do.html" class="text-gray-400 hover:text-white transition-all">预购游戏</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">支持</h4>
+                    <ul class="space-y-2">
+                        <li><a href="to-do.html" class="text-gray-400 hover:text-white transition-all">帮助中心</a></li>
+                        <li><a href="to-do.html" class="text-gray-400 hover:text-white transition-all">退款政策</a></li>
+                        <li><a href="to-do.html" class="text-gray-400 hover:text-white transition-all">联系我们</a></li>
+                        <li><a href="to-do.html" class="text-gray-400 hover:text-white transition-all">常见问题</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">订阅更新</h4>
+                    <p class="text-gray-400 mb-4">订阅我们的新闻通讯，获取最新的游戏资讯和优惠信息。</p>
+                    <div class="flex">
+                        <input type="email" placeholder="您的邮箱地址"
+                            class="bg-gray-800 px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary/50 w-full">
+                        <button class="bg-primary hover:bg-primary/80 px-4 py-2 rounded-r-lg transition-all">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2026 GameHub. 保留所有权利。</p>
+                <div class="flex gap-6">
+                    <a href="to-do.html" class="text-gray-400 hover:text-white transition-all">隐私政策</a>
+                    <a href="to-do.html" class="text-gray-400 hover:text-white transition-all">使用条款</a>
+                    <a href="to-do.html" class="text-gray-400 hover:text-white transition-all">Cookie 政策</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--4js交互-->
+    <script>
+        // 移动端
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mobileMenu.classList.contains("hidden")) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        });
+        //按钮
+        const carouselItems = document.querySelector('.carousel-items');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const indicator = document.querySelectorAll('.carousel-indicator');
+        let currentIndex = 0;
+        const totalSlides = indicator.length;
+        function updateCarousel() {
+            carouselItems.style.transform = `translateX(-${currentIndex * 100}%)`;
+            indicator.forEach((indicator, index) => {
+                if (index === currentIndex) {
+                    indicator.classList.add('bg-primary');
+                    indicator.classList.remove('bg-white/50');
+                } else {
+                    indicator.classList.remove('bg-primary');
+                    indicator.classList.add('bg-white/50');
+                }
+            });
+        }
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateCarousel();
+        });
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        });
+        indicator.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentIndex = index;
+                updateCarousel();
+            });
+        });
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateCarousel();
+        }, 5000);
+        //表
+        const rankBtns = document.querySelectorAll('.rank-btn');
+        const rankTable = document.getElementById('rank-table');
+        const rankPlaceholder = document.getElementById('rank-placeholder');
+        rankBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const text = btn.innerText.trim();
+                rankBtns.forEach(b => {
+                    b.classList.remove('bg-primary', 'text-white');
+                    b.classList.add('bg-gray-800', 'hover:bg-gray-700');
+                });
+                btn.classList.remove('bg-gray-800', 'hover:bg-gray-700');
+                btn.classList.add('bg-primary', 'text-white');
+                if (text === '销量') {
+                    rankTable.classList.remove('hidden');
+                    rankPlaceholder.classList.add('hidden');
+                } else {
+                    rankTable.classList.add('hidden');
+                    rankPlaceholder.classList.remove('hidden');
+                }
+            });
+        });
+        //搜索
+        const searchInput = document.getElementById('search');
+        if (searchInput) {
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    alert(`正在搜索: ${searchInput.value}`);
+                }
+            });
+        }
+        //未来可期
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const gameGrid = document.getElementById('game-grid');
+        const placeholder = document.querySelector('.category-placeholder');
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const category = btn.dataset.category;
+                categoryBtns.forEach(b => {
+                    b.classList.remove('bg-primary', 'text-white');
+                    b.classList.add('bg-gray-800');
+                });
+                btn.classList.remove('bg-gray-800');
+                btn.classList.add('bg-primary', 'text-white');
+                if (category === 'all') {
+                    gameGrid.classList.remove('hidden');
+                    placeholder.classList.add('hidden');
+                } else {
+                    gameGrid.classList.add('hidden');
+                    placeholder.classList.remove('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
