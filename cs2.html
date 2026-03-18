@@ -39,52 +39,64 @@
     </style>
 </head>
 <body class="bg-gray-900 text-white font-inter">
-    <header class="sticky top-0 z-50 bg-secondary/90 backdrop-blur-sm">
+<!--1导航栏-->
+    <header id="top" class="sticky top-0 z-50 bg-secondary/90 backdrop-blur-sm">
         <div class="container mx-auto px-4 py-3 flex items-center justify-between">
             <div class="flex items-center gap-2">
                 <i class="fa-solid fa-gamepad text-3xl text-primary"></i>
                 <h1 class="text-2xl font-bold text-white">GameHub</h1>
             </div>
+
             <div class="hidden md:block w-1/3">
                 <div class="relative">
-                    <input type="text" id="search-input" placeholder="搜索游戏、开发商、标签..."
+                    <input type="text" id="search" placeholder="搜索游戏、开发商、标签..."
                         class="w-full bg-gray-800 rounded-full py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-primary/50">
                     <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
                 </div>
             </div>
+
             <nav class="hidden md:flex items-center gap-2">
-                <a href="gamehub.html" class="nav-link">首页</a>
-                <a href="gamehub.html" class="nav-link border-b-2 border-primary text-white">商店</a>
+                <a href="./gamehub.html" class="nav-link border-b-2 border-primary text-white">首页</a>
+                <a href="./gamehub.html" class="nav-link">商店</a>
                 <a href="to-do.html" class="nav-link">特惠</a>
                 <a href="to-do.html" class="nav-link">库</a>
                 <a href="to-do.html" class="nav-link">社区</a>
             </nav>
+
             <div class="flex items-center gap-4">
-                <button class="hidden md:block bg-primary hover:bg-primary/80 px-4 py-2 rounded-full transition-all">
-                    <i class="fa-solid fa-cart-shopping mr-2"></i>购物车
-                </button>
-                <div
-                    class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center cursor-pointer hover:ring-2 hover:ring-primary/50 transition-all">
-                    <i class="fa-solid fa-user"></i>
-                </div>
+                <a href="to-do.html">
+                    <button
+                        class="hidden md:block bg-primary hover:bg-primary/80 px-4 py-2 rounded-full transition-all">
+                        <i class="fa-solid fa-cart-shopping mr-2"></i>购物车
+                    </button>
+                </a>
+                <a href="./user.html">
+                    <div
+                        class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center cursor-pointer hover:ring-2 hover:ring-primary/50 transition-all">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </a>
+                <!--移动端搜索-->
                 <button id="mobile-menu-btn" class="md:hidden text-2xl">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
         </div>
+
         <div class="md:hidden px-4 pb-3">
             <div class="relative">
-                <input type="text" placeholder="搜索游戏..."
+                <input type="text" placeholder="搜索游戏、开发商、标签..."
                     class="w-full bg-gray-800 rounded-full py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-primary/50">
                 <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
             </div>
         </div>
+        <!--移动端-->
         <div id="mobile-menu" class="md:hidden hidden bg-secondary border-t border-gray-700">
             <div class="container mx-auto px-4 py-2 flex flex-col">
-                <a href="gamehub.html"
-                    class="py-2 px-4 text-gray-300 hover:text-white hover:border-l-4 hover:border-primary transition-all">首页</a>
-                <a href="gamehub.html" class="py-2 px-4 text-white border-l-4 border-primary">商店</a>
-                <a href="#"
+                <a href="./gamehub.html" class="py-2 px-4 text-white border-l-4 border-primary">首页</a>
+                <a href="./gamehub.html"
+                    class="py-2 px-4 text-gray-300 hover:text-white hover:border-l-4 hover:border-primary transition-all">商店</a>
+                <a href="to-do.html"
                     class="py-2 px-4 text-gray-300 hover:text-white hover:border-l-4 hover:border-primary transition-all">特惠</a>
                 <a href="to-do.html"
                     class="py-2 px-4 text-gray-300 hover:text-white hover:border-l-4 hover:border-primary transition-all">库</a>
