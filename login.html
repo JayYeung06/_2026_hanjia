@@ -111,18 +111,60 @@
         </div>
     </header>
     <!--2主体-->
-    <div class="flex flex-col items-center mb-8">
-        <div class="w-24 h-24 rounded-full bg-primary/20 flex items-center justify-center mb-4">
-            <i class="fa-solid fa-user text-4xl text-primary"></i>
+    <div class="container mx-auto px-4 py-8 flex justify-center">
+        <div class="w-full max-w-md bg-secondary rounded-xl p-8 shadow-2xl">
+            <div class="flex justify-center mb-8">
+                <button id="login-tab" class="px-6 py-2 bg-primary text-white rounded-lg font-medium">登录</button>
+                <button id="register-tab"
+                    class="px-6 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg font-medium transition-all">注册</button>
+            </div>
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <label clss="block block text-gray-400 mb-2">用户名</label>
+                    <input type="text" id="login-username"
+                        class="w-full bg-gray-800 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        placeholder="用户名" required>
+                </div>
+                <div>
+                    <label class="block text-gray-400 mb-2">密码</label>
+                    <input type="password" id="login-password"
+                        class="w-full bg-gray-800 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        placeholder="密码" required>
+                </div>
+                <button type="submit"
+                    class="w-full bg-primary hover:bg-primary/80 py-3 rounded-lg font-medium transition-all">
+                    登录
+                </button>
+            </form>
+
+            <form id="register-form" class="space-y-4 hidden">
+                <div>
+                    <label clss="block text-gray-400 mb-2">用户名</label>
+                    <input type="text" id="register-username"
+                        class="w-full bg-gray-800 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        placeholder="用户名" required>
+                </div>
+                <div>
+                    <label class="block text-gray-400 mb-2">密码</label>
+                    <input type="password" id="register-password"
+                        class="w-full bg-gray-800 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        placeholder="密码" required>
+                </div>
+                <div>
+                    <label class="block text-gray-400 mb-2">确认密码</label>
+                    <input type="password" id="register-repassword"
+                        class="w-full bg-gray-800 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        placeholder="确认密码" required>
+                </div>
+                <button type="submit"
+                    class="w-full bg-primary hover:bg-primary/80 py-3 rounded-lg font-medium transition-all">
+                    注册
+                </button>
+            </form>
         </div>
-        <h2 class="text-xl font-semibold" id="username">加载中……</h2>
     </div>
-    <div class="border-t border-gray-700 pt-6">
-        <button id="logout" class="w-full py-3 bg-red-600 hover:bg-red-700 rounded-lg transition-all">退出登录</button>
-    </div>
-    
+
     <script src="./login.js"></script>
     <script src="./home.js"></script>
-    <script src="./user.js"></script>
-</body>
+
 </html>
