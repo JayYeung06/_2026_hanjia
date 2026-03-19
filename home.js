@@ -103,6 +103,14 @@
                 }
             });
         }
+        const mobilesearchInput = document.getElementById('moblie_search');
+        if (mobilesearchInput) {
+            mobilesearchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    alert(`正在搜索: ${mobilesearchInput.value}`);
+                }
+            });
+        }
         //未来可期
         const categoryBtns = document.querySelectorAll('.category-btn');
         const gameGrid = document.getElementById('game-grid');
