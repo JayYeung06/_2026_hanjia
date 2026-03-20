@@ -17,6 +17,9 @@
         const prevBtn = document.getElementById('prev-btn');
         const nextBtn = document.getElementById('next-btn');
         const indicator = document.querySelectorAll('.carousel-indicator');
+        const firstbtn = document.getElementById('first-btn');
+        const secondbtn = document.getElementById('second-btn');
+        const thirdbtn = document.getElementById('third-btn');
         let currentIndex = 0;
         const totalSlides = 4;
         const transitionClass = 'duration-500';
@@ -72,6 +75,18 @@
         setInterval(() => {
             nextBtn.click();
         }, 5000);
+        firstbtn.addEventListener('click', () => {
+            currentIndex = 0;
+            updateCarousel();
+        });
+        secondbtn.addEventListener('click', () => {
+            currentIndex = 1;
+            updateCarousel();
+        });
+       thirdbtn.addEventListener('click', () => {
+            currentIndex = 2;
+            updateCarousel();
+        });
         //表
         const rankBtns = document.querySelectorAll('.rank-btn');
         const rankTable = document.getElementById('rank-table');
